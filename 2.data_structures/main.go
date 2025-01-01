@@ -4,10 +4,12 @@ import (
 	"fmt"
 
 	"github.com/rodrigueslg/data_structures_algorithms_bootcamp_udemy/arrays/1/arrays"
+	"github.com/rodrigueslg/data_structures_algorithms_bootcamp_udemy/arrays/1/graphs"
 	"github.com/rodrigueslg/data_structures_algorithms_bootcamp_udemy/arrays/1/lists"
 	"github.com/rodrigueslg/data_structures_algorithms_bootcamp_udemy/arrays/1/maps"
 	mySlices "github.com/rodrigueslg/data_structures_algorithms_bootcamp_udemy/arrays/1/slices"
 	"github.com/rodrigueslg/data_structures_algorithms_bootcamp_udemy/arrays/1/stacksqueues"
+	"github.com/rodrigueslg/data_structures_algorithms_bootcamp_udemy/arrays/1/trees"
 )
 
 func main() {
@@ -17,7 +19,9 @@ func main() {
 	//runLinkedLists()
 	//runDoublyLinkedLists()
 	//runStacks()
-	runQueues()
+	//runQueues()
+	//runTrees()
+	runGraphs()
 }
 
 func runArrays() {
@@ -165,4 +169,54 @@ func runQueues() {
 	fmt.Println(s.Dequeue())
 	fmt.Println(s.Dequeue())
 	fmt.Println(s.Dequeue())
+}
+
+func runTrees() {
+	values := []int{9, 4, 6, 20, 170, 15, 1}
+	bst := trees.NewBinarySearchTree()
+
+	for _, v := range values {
+		bst.Insert(v)
+	}
+
+	for _, v := range values {
+		node := bst.Lookup(v)
+		if node != nil {
+			fmt.Printf("Value: %d, ", node.Value)
+
+			if node.Left != nil {
+				fmt.Printf("Left: %d, ", node.Left.Value)
+			} else {
+				fmt.Printf("Left: nil, ")
+			}
+
+			if node.Right != nil {
+				fmt.Printf("Right: %d, ", node.Right.Value)
+			} else {
+				fmt.Printf("Right: nil, ")
+			}
+
+			fmt.Printf("\n")
+		}
+	}
+}
+
+func runGraphs() {
+	g := graphs.NewGraph()
+	g.AddVertex("0")
+	g.AddVertex("1")
+	g.AddVertex("2")
+	g.AddVertex("3")
+	g.AddVertex("4")
+	g.AddVertex("5")
+	g.AddVertex("6")
+	g.AddEdge("3", "1")
+	g.AddEdge("3", "4")
+	g.AddEdge("4", "2")
+	g.AddEdge("4", "5")
+	g.AddEdge("1", "2")
+	g.AddEdge("1", "0")
+	g.AddEdge("0", "2")
+	g.AddEdge("6", "5")
+	g.PrintConnections()
 }
